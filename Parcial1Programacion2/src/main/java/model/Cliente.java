@@ -5,24 +5,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Representa un cliente registrado en el gimnasio.
+ * Clase para instanciar nuevos clientes
  */
 public class Cliente {
 
+    /**
+     * Atributos
+     */
     private String nombreCompleto;
     private String documentoIdentidad;
-    private int telefono;
+    private String telefono;
     private String correoElectronico;
     private int edad;
     private LocalDate fechaRegistro;
-
     private Gimnasio gimnasio;
-    private List<Inscripcion> inscripciones;
+    private List<Inscripcion> listInscripciones;
+    private List<ServicioAdicional>  ListservicioAdicionales;
 
     /**
      * Construye un cliente con la información suministrada.
      */
-    public Cliente(String nombreCompleto, String documentoIdentidad, int telefono,
+    public Cliente(String nombreCompleto, String documentoIdentidad, String telefono,
                    String correoElectronico, int edad, LocalDate fechaRegistro) {
 
         this.nombreCompleto = nombreCompleto;
@@ -31,21 +34,22 @@ public class Cliente {
         this.correoElectronico = correoElectronico;
         this.edad = edad;
         this.fechaRegistro = fechaRegistro;
-        this.inscripciones = new ArrayList<>();
+        this.listInscripciones = new ArrayList<>();
+        this.ListservicioAdicionales = new ArrayList<>();
     }
 
     /**
      * Agrega una inscripción al cliente.
      */
     public void agregarInscripcion(Inscripcion inscripcion) {
-        inscripciones.add(inscripcion);
+        listInscripciones.add(inscripcion);
     }
 
     /**
      * Elimina una inscripción del cliente.
      */
     public void eliminarInscripcion(Inscripcion inscripcion) {
-        inscripciones.remove(inscripcion);
+        listInscripciones.remove(inscripcion);
     }
 
     /**
@@ -65,7 +69,7 @@ public class Cliente {
     /**
      * Obtiene el teléfono del cliente.
      */
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
@@ -100,8 +104,48 @@ public class Cliente {
     /**
      * Obtiene las inscripciones del cliente.
      */
-    public List<Inscripcion> getInscripciones() {
-        return inscripciones;
+    public List<Inscripcion> getListInscripciones() {
+        return listInscripciones;
+    }
+
+    public void setListInscripciones(List<Inscripcion> listInscripciones) {
+        this.listInscripciones = listInscripciones;
+    }
+
+    public List<ServicioAdicional> getListservicioAdicionales() {
+        return ListservicioAdicionales;
+    }
+
+    public void setListservicioAdicionales(List<ServicioAdicional> listservicioAdicionales) {
+        ListservicioAdicionales = listservicioAdicionales;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+
+    public void setDocumentoIdentidad(String documentoIdentidad) {
+        this.documentoIdentidad = documentoIdentidad;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public void setGimnasio(Gimnasio gimnasio) {
+        this.gimnasio = gimnasio;
     }
 
     @Override
