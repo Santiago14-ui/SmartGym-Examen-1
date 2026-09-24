@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Controlador para interactuar con la clase
+ * Controlador para interactuar con la Entrenador
  */
 public class GimnasioController {
     private Gimnasio gimnasio;
