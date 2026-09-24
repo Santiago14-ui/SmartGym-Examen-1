@@ -22,6 +22,7 @@ public final class Gimnasio {
     private String direccion;
     private String telefono;
     private String correoElectronico;
+    private String paginaWeb;
     private List<Cliente> listClientes;
     private List<Entrenador> listEntrenadores;
     private List<PlanEntrenamiento> listPlanes;
@@ -37,12 +38,13 @@ public final class Gimnasio {
         this.direccion = "Universidad del Quindio";
         this.telefono = "3000000000";
         this.correoElectronico = "smartGym@yahoo.com";
+        this.paginaWeb = "paginaWeb.com";
 
-        listClientes = new ArrayList<>();
-        listEntrenadores = new ArrayList<>();
-        listPlanes = new ArrayList<>();
-        listServiciosAdicionales = new ArrayList<>();
-        listInscripciones = new ArrayList<>();
+        this.listClientes = new ArrayList<>();
+        this.listEntrenadores = new ArrayList<>();
+        this.listPlanes = new ArrayList<>();
+        this.listServiciosAdicionales = new ArrayList<>();
+        this.listInscripciones = new ArrayList<>();
     }
 
     /**
@@ -222,6 +224,14 @@ public final class Gimnasio {
 
     public void setListInscripciones(List<Inscripcion> listInscripciones) {
         this.listInscripciones = listInscripciones;
+    }
+
+    public String getPaginaWeb() {
+        return paginaWeb;
+    }
+
+    public void setPaginaWeb(String paginaWeb) {
+        this.paginaWeb = paginaWeb;
     }
 
     @Override
