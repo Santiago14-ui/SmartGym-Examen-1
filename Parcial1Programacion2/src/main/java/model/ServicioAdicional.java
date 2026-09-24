@@ -4,9 +4,8 @@ package model;
  * Representa un servicio adicional ofrecido por el gimnasio.
  */
 public class ServicioAdicional {
-    /**
-     * Atributos de la clase
-     */
+
+    // Atributos de la clase
     private String codigo;
     private String nombre;
     private String descripcion;
@@ -19,6 +18,7 @@ public class ServicioAdicional {
      */
     public ServicioAdicional(String codigo, String nombre,
                              String descripcion, double precio) {
+
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -60,14 +60,12 @@ public class ServicioAdicional {
         return gimnasio;
     }
 
-
+    /**
+     * Muestra solamente el nombre del servicio
+     * cuando se utiliza en un ComboBox.
+     */
     @Override
     public String toString() {
-        return "ServicioAdicional{" +
-                "codigo='" + codigo + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", precio=" + precio +
-                '}';
+        return nombre;
     }
 }

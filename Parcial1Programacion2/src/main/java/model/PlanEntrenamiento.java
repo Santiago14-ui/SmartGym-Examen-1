@@ -7,9 +7,8 @@ import java.util.List;
  * Define la información común de los planes de entrenamiento.
  */
 public abstract class PlanEntrenamiento {
-    /**
-     * Atributos de la clase
-     */
+
+    // Atributos de la clase
     private String codigo;
     private String nombre;
     private String descripcion;
@@ -18,6 +17,7 @@ public abstract class PlanEntrenamiento {
     private EstadoPlan estado;
     private Gimnasio gimnasio;
     private List<Inscripcion> inscripciones;
+    private List<BeneficioPlan> beneficios;
 
     /**
      * Crea un plan de entrenamiento con sus datos básicos.
@@ -25,6 +25,7 @@ public abstract class PlanEntrenamiento {
     public PlanEntrenamiento(String codigo, String nombre, String descripcion,
                              int duracionMeses, double valorMensual,
                              EstadoPlan estado) {
+
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -32,6 +33,7 @@ public abstract class PlanEntrenamiento {
         this.valorMensual = valorMensual;
         this.estado = estado;
         this.inscripciones = new ArrayList<>();
+        this.beneficios = new ArrayList<>();
     }
 
     /**
@@ -47,6 +49,15 @@ public abstract class PlanEntrenamiento {
     public void agregarInscripcion(Inscripcion inscripcion) {
         inscripciones.add(inscripcion);
     }
+
+    /**
+     * Agrega un beneficio al plan de entrenamiento.
+     */
+    public void agregarBeneficio(BeneficioPlan beneficio) {
+        beneficios.add(beneficio);
+    }
+
+    // Getters
 
     public String getCodigo() {
         return codigo;
@@ -78,5 +89,21 @@ public abstract class PlanEntrenamiento {
 
     public List<Inscripcion> getInscripciones() {
         return inscripciones;
+    }
+
+    /**
+     * Obtiene los beneficios incluidos en el plan.
+     */
+    public List<BeneficioPlan> getBeneficios() {
+        return beneficios;
+    }
+
+    /**
+     * Permite mostrar solamente el nombre del plan
+     * cuando se utiliza en un ComboBox.
+     */
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

@@ -1,18 +1,20 @@
 package model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Representa la inscripción de un cliente a un plan de entrenamiento.
+ *
+ * La inscripción registra el cliente, el plan seleccionado,
+ * el entrenador asignado, los servicios adicionales, la fecha
+ * y hora de registro y el valor total.
  */
 public class Inscripcion {
 
-    /**
-     * Atributos de la clase
-     */
-    private LocalDate fechaInscripcion;
+    // Atributos de la clase
+    private LocalDateTime fechaInscripcion;
     private double valorTotal;
     private Cliente cliente;
     private PlanEntrenamiento plan;
@@ -22,8 +24,12 @@ public class Inscripcion {
     /**
      * Crea una inscripción asociada a un cliente y un plan.
      */
-    public Inscripcion(LocalDate fechaInscripcion, Cliente cliente,
-                       PlanEntrenamiento plan, Entrenador entrenador) {
+    public Inscripcion(
+            LocalDateTime fechaInscripcion,
+            Cliente cliente,
+            PlanEntrenamiento plan,
+            Entrenador entrenador) {
+
         this.fechaInscripcion = fechaInscripcion;
         this.cliente = cliente;
         this.plan = plan;
@@ -34,14 +40,22 @@ public class Inscripcion {
 
     /**
      * Agrega un servicio adicional a la inscripción.
+     *
+     * Al agregar el servicio se actualiza automáticamente
+     * el valor total de la inscripción.
      */
     public void agregarServicio(ServicioAdicional servicio) {
+
         serviciosAdicionales.add(servicio);
+
         valorTotal = calcularValorTotal();
     }
 
     /**
      * Calcula el valor total de la inscripción.
+     *
+     * El valor total corresponde al valor base del plan
+     * más el precio de todos los servicios adicionales.
      */
     public double calcularValorTotal() {
 
@@ -55,9 +69,9 @@ public class Inscripcion {
     }
 
     /**
-     * Obtiene la fecha de la inscripción.
+     * Obtiene la fecha y hora de la inscripción.
      */
-    public LocalDate getFechaInscripcion() {
+    public LocalDateTime getFechaInscripcion() {
         return fechaInscripcion;
     }
 
@@ -101,6 +115,7 @@ public class Inscripcion {
      */
     @Override
     public String toString() {
+
         return "Inscripcion{" +
                 "fechaInscripcion=" + fechaInscripcion +
                 ", valorTotal=" + valorTotal +
