@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx"
@@ -11,7 +12,7 @@
       fx:controller="viewController.ClienteViewController"
       spacing="15"
       prefWidth="500"
-      prefHeight="500">
+      prefHeight="550">
 
     <Label text="GESTIÓN DE CLIENTES"/>
 
@@ -69,19 +70,31 @@
     </GridPane>
 
 
-    <Button text="Registrar cliente"
-            fx:id="btnRegistrarCliente"
-            onAction="#registrarCliente"/>
+    <HBox spacing="10">
+
+        <Button text="Registrar cliente"
+                onAction="#registrarCliente"/>
+
+        <Button text="Actualizar"
+                onAction="#actualizarCliente"/>
+
+        <Button text="Eliminar"
+                onAction="#eliminarCliente"/>
+
+    </HBox>
 
 
-    <Label text="BUSCAR CLIENTE POR TELÉFONO"/>
+    <Label text="BUSCAR CLIENTE POR DOCUMENTO"/>
 
-    <TextField fx:id="txtBuscarTelefono"
-               promptText="Ingrese el teléfono"/>
+    <HBox spacing="10">
 
-    <Button text="Buscar"
-            fx:id="btnBuscarCliente"
-            onAction="#buscarCliente"/>
+        <TextField fx:id="txtBuscarDocumento"
+                   promptText="Ingrese el documento"/>
+
+        <Button text="Buscar"
+                onAction="#buscarCliente"/>
+
+    </HBox>
 
 
     <Label fx:id="lblResultado"

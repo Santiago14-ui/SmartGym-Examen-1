@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase para instanciar nuevos clientes
+ * Clase para instanciar nuevos clientes.
  */
 public class Cliente {
 
-    /**
-     * Atributos de la clase
-     */
+    // Atributos de la clase
     private String nombreCompleto;
     private String documentoIdentidad;
     private String telefono;
@@ -20,7 +18,7 @@ public class Cliente {
     private LocalDate fechaRegistro;
     private Gimnasio gimnasio;
     private List<Inscripcion> listInscripciones;
-    private List<ServicioAdicional>  ListservicioAdicionales;
+    private List<ServicioAdicional> listservicioAdicionales;
 
     /**
      * Construye un cliente con la información suministrada.
@@ -35,7 +33,7 @@ public class Cliente {
         this.edad = edad;
         this.fechaRegistro = fechaRegistro;
         this.listInscripciones = new ArrayList<>();
-        this.ListservicioAdicionales = new ArrayList<>();
+        this.listservicioAdicionales = new ArrayList<>();
     }
 
     /**
@@ -52,72 +50,52 @@ public class Cliente {
         listInscripciones.remove(inscripcion);
     }
 
-    /**
-     * Obtiene el nombre completo del cliente.
-     */
+    // Getters
+
     public String getNombreCompleto() {
         return nombreCompleto;
     }
 
-    /**
-     * Obtiene el documento de identidad del cliente.
-     */
     public String getDocumentoIdentidad() {
         return documentoIdentidad;
     }
 
-    /**
-     * Obtiene el teléfono del cliente.
-     */
     public String getTelefono() {
         return telefono;
     }
 
-    /**
-     * Obtiene el correo electrónico del cliente.
-     */
     public String getCorreoElectronico() {
         return correoElectronico;
     }
 
-    /**
-     * Obtiene la edad del cliente.
-     */
     public int getEdad() {
         return edad;
     }
 
-    /**
-     * Obtiene la fecha de registro del cliente.
-     */
     public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
 
-    /**
-     * Obtiene el gimnasio al que pertenece el cliente.
-     */
     public Gimnasio getGimnasio() {
         return gimnasio;
     }
 
-    /**
-     * Obtiene las inscripciones del cliente.
-     */
     public List<Inscripcion> getListInscripciones() {
         return listInscripciones;
     }
+
+    public List<ServicioAdicional> getListservicioAdicionales() {
+        return listservicioAdicionales;
+    }
+
+    // Setters
 
     public void setListInscripciones(List<Inscripcion> listInscripciones) {
         this.listInscripciones = listInscripciones;
     }
 
-    public List<ServicioAdicional> getListservicioAdicionales() {
-        return ListservicioAdicionales;
-    }
-
     public void setListservicioAdicionales(List<ServicioAdicional> listservicioAdicionales) {
-        ListservicioAdicionales = listservicioAdicionales;
+        this.listservicioAdicionales = listservicioAdicionales;
     }
 
     public void setNombreCompleto(String nombreCompleto) {
@@ -148,15 +126,12 @@ public class Cliente {
         this.gimnasio = gimnasio;
     }
 
+    /**
+     * Permite mostrar solamente el nombre del cliente
+     * cuando se utiliza en un ComboBox.
+     */
     @Override
     public String toString() {
-        return "Cliente{" +
-                "nombreCompleto='" + nombreCompleto + '\'' +
-                ", documentoIdentidad='" + documentoIdentidad + '\'' +
-                ", telefono=" + telefono +
-                ", correoElectronico='" + correoElectronico + '\'' +
-                ", edad=" + edad +
-                ", fechaRegistro=" + fechaRegistro +
-                '}';
+        return nombreCompleto;
     }
 }

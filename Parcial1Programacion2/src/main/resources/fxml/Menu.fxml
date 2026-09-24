@@ -9,7 +9,7 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="viewController.MenuViewController"
       alignment="CENTER"
-      spacing="20">
+      spacing="15">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
@@ -24,5 +24,23 @@
 
     <Button text="Gestionar Entrenadores"
             onAction="#abrirEntrenadores"/>
+
+    <Button text="Gestionar Planes"
+            onAction="#abrirPlanes"/>
+
+    <Button text="Gestionar Servicios Adicionales"
+            onAction="#abrirServiciosAdicionales"/>
+
+    <Button text="Gestionar Inscripciones"
+            onAction="#abrirInscripciones"/>
+
+    <Button text="Reporte de Ingresos"
+            onAction="#abrirReporteIngresos"/>
+
+    <Button text="Consultar Ingresos"
+            onAction="#abrirIngresos"/>
+
+    <Button text="Consultar Inscripciones"
+            onAction="#abrirInscripcionesRegistradas"/>
 
 </VBox>

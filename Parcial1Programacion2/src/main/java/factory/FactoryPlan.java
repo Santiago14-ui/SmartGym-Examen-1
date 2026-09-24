@@ -1,5 +1,6 @@
 package factory;
 
+import model.EstadoPlan;
 import model.PlanEntrenamiento;
 
 /**
@@ -10,5 +11,12 @@ public abstract class FactoryPlan {
     /**
      * Crea un plan de entrenamiento.
      */
-    public abstract PlanEntrenamiento crearPlan();
+    public abstract PlanEntrenamiento crearPlan(
+            String codigo,
+            String nombre,
+            String descripcion,
+            int duracionMeses,
+            double valorMensual,
+            EstadoPlan estado
+    );
 }

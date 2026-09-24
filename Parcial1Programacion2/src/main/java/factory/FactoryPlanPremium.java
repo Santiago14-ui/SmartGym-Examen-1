@@ -10,17 +10,24 @@ import model.PlanPremium;
 public class FactoryPlanPremium extends FactoryPlan {
 
     /**
-     * Crea un plan premium con valores iniciales.
+     * Crea un plan premium con los datos recibidos.
      */
     @Override
-    public PlanEntrenamiento crearPlan() {
+    public PlanEntrenamiento crearPlan(
+            String codigo,
+            String nombre,
+            String descripcion,
+            int duracionMeses,
+            double valorMensual,
+            EstadoPlan estado
+    ) {
         return new PlanPremium(
-                "002",
-                "Plan Premium",
-                "Plan de entrenamiento premium",
-                1,
-                150000,
-                EstadoPlan.ACTIVO
+                codigo,
+                nombre,
+                descripcion,
+                duracionMeses,
+                valorMensual,
+                estado
         );
     }
 }

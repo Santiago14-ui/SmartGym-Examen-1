@@ -15,7 +15,7 @@
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <Label text="Registro de Entrenador"/>
+    <Label text="GESTIÓN DE ENTRENADORES"/>
 
     <Label text="Identificación"/>
     <TextField fx:id="txtIdentificacion"
@@ -39,5 +39,22 @@
 
     <Button text="Registrar entrenador"
             onAction="#registrarEntrenador"/>
+
+    <Label text="CONSULTAR ENTRENADOR"/>
+
+    <TextField fx:id="txtBuscarIdentificacion"
+               promptText="Ingrese la identificación para buscar"/>
+
+    <Button text="Consultar entrenador"
+            onAction="#buscarEntrenador"/>
+
+    <Button text="Actualizar entrenador"
+            onAction="#actualizarEntrenador"/>
+
+    <Button text="Eliminar entrenador"
+            onAction="#eliminarEntrenador"/>
+
+    <Button text="Limpiar campos"
+            onAction="#limpiarCampos"/>
 
 </VBox>

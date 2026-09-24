@@ -7,7 +7,7 @@ import model.Inscripcion;
 import model.PlanEntrenamiento;
 import model.ServicioAdicional;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -39,12 +39,14 @@ public class InscripcionController {
     }
 
     /**
-     * Crea una nueva inscripción y establece las relaciones correspondientes con el cliente, plan y entrenador.
+     * Crea una nueva inscripción y establece las relaciones correspondientes
+     * con el cliente, plan y entrenador.
      */
-    public Inscripcion crearInscripcion(LocalDate fechaInscripcion,
-                                        Cliente cliente,
-                                        PlanEntrenamiento plan,
-                                        Entrenador entrenador) {
+    public Inscripcion crearInscripcion(
+            LocalDateTime fechaInscripcion,
+            Cliente cliente,
+            PlanEntrenamiento plan,
+            Entrenador entrenador) {
 
         Inscripcion inscripcion = new Inscripcion(
                 fechaInscripcion,
@@ -68,8 +70,9 @@ public class InscripcionController {
     /**
      * Agrega un servicio adicional a una inscripción.
      */
-    public void agregarServicio(Inscripcion inscripcion,
-                                ServicioAdicional servicio) {
+    public void agregarServicio(
+            Inscripcion inscripcion,
+            ServicioAdicional servicio) {
 
         inscripcion.agregarServicio(servicio);
     }

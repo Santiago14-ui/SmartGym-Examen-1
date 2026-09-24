@@ -7,9 +7,8 @@ import java.util.List;
  * Representa un entrenador registrado en el gimnasio.
  */
 public class Entrenador {
-    /**
-     * Atributos de la clase
-     */
+
+    // Atributos de la clase
     private String identificacion;
     private String nombre;
     private String especialidad;
@@ -24,6 +23,7 @@ public class Entrenador {
      */
     public Entrenador(String identificacion, String nombre, String especialidad,
                       String telefono, double tarifaPorSesion) {
+
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.especialidad = especialidad;
@@ -39,63 +39,71 @@ public class Entrenador {
         inscripciones.add(inscripcion);
     }
 
-    /**
-     * Obtiene la identificación del entrenador.
-     */
+    // Getters
+
     public String getIdentificacion() {
         return identificacion;
     }
 
-    /**
-     * Obtiene el nombre del entrenador.
-     */
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * Obtiene la especialidad del entrenador.
-     */
     public String getEspecialidad() {
         return especialidad;
     }
 
-    /**
-     * Obtiene el teléfono del entrenador.
-     */
     public String getTelefono() {
         return telefono;
     }
 
-    /**
-     * Obtiene la tarifa por sesión.
-     */
     public double getTarifaPorSesion() {
         return tarifaPorSesion;
     }
 
-    /**
-     * Obtiene el gimnasio al que pertenece el entrenador.
-     */
     public Gimnasio getGimnasio() {
         return gimnasio;
     }
 
-    /**
-     * Obtiene las inscripciones asignadas al entrenador.
-     */
     public List<Inscripcion> getInscripciones() {
         return inscripciones;
     }
 
+    // Setters
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setTarifaPorSesion(double tarifaPorSesion) {
+        this.tarifaPorSesion = tarifaPorSesion;
+    }
+
+    public void setGimnasio(Gimnasio gimnasio) {
+        this.gimnasio = gimnasio;
+    }
+
+    public void setInscripciones(List<Inscripcion> inscripciones) {
+        this.inscripciones = inscripciones;
+    }
+
+    /**
+     * Se muestra solamente el nombre en los ComboBox.
+     */
     @Override
     public String toString() {
-        return "Entrenador{" +
-                "identificacion='" + identificacion + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", especialidad='" + especialidad + '\'' +
-                ", telefono=" + telefono +
-                ", tarifaPorSesion=" + tarifaPorSesion +
-                '}';
+        return nombre;
     }
 }
