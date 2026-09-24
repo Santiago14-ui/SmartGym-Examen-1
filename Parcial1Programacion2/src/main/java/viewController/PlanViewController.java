@@ -7,9 +7,12 @@ import factory.FactoryPlanPersonalizado;
 import factory.FactoryPlanPremium;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import model.BeneficioPlan;
 import model.EstadoPlan;
 import model.Gimnasio;
 import model.PlanEntrenamiento;
@@ -57,8 +60,24 @@ public class PlanViewController {
     @FXML
     private TextField txtObjetivos;
 
+    @FXML
+    private CheckBox chkAccesoZonas;
+
+    @FXML
+    private CheckBox chkClasesGrupales;
+
+    @FXML
+    private CheckBox chkAcompanamientoEntrenador;
+
+    @FXML
+    private Label lblBeneficiosIncluidos;
+
     /**
      * Inicializa el controlador.
+     *
+     * Carga los tipos de planes y los estados disponibles.
+     * También controla la visibilidad de los campos
+     * correspondientes al plan personalizado.
      */
     @FXML
     public void initialize() {
@@ -66,38 +85,102 @@ public class PlanViewController {
         gimnasioController =
                 new GimnasioController(Gimnasio.getInstancia());
 
+        // Cargar tipos de plan.
         cmbTipoPlan.getItems().addAll(
                 "Básico",
                 "Premium",
                 "Personalizado"
         );
 
+        // Cargar estados.
         cmbEstado.getItems().addAll(
                 EstadoPlan.values()
         );
 
+        // Valores iniciales.
         cmbTipoPlan.setValue("Básico");
         cmbEstado.setValue(EstadoPlan.ACTIVO);
 
-        // Inicialmente se ocultan los campos personalizados.
+        // Ocultar inicialmente el panel personalizado.
         panelPersonalizado.setVisible(false);
         panelPersonalizado.setManaged(false);
 
-        // Detecta cuando cambia el tipo de plan.
+        // Mostrar los beneficios del plan básico.
+        actualizarBeneficios("Básico");
+
+        /*
+         * Detecta cuando cambia el tipo de plan.
+         */
         cmbTipoPlan.valueProperty().addListener(
                 (observable, valorAnterior, nuevoValor) -> {
 
                     boolean esPersonalizado =
                             "Personalizado".equals(nuevoValor);
 
+                    // Mostrar u ocultar el panel personalizado.
                     panelPersonalizado.setVisible(esPersonalizado);
                     panelPersonalizado.setManaged(esPersonalizado);
+
+                    // Actualizar los beneficios mostrados.
+                    actualizarBeneficios(nuevoValor);
+
+                    /*
+                     * Si no es personalizado,
+                     * se desmarcan las casillas.
+                     */
+                    if (!esPersonalizado) {
+
+                        chkAccesoZonas.setSelected(false);
+                        chkClasesGrupales.setSelected(false);
+                        chkAcompanamientoEntrenador.setSelected(false);
+                    }
                 }
         );
     }
 
     /**
+     * Actualiza el texto de los beneficios dependiendo
+     * del tipo de plan seleccionado.
+     *
+     * @param tipoPlan tipo de plan seleccionado
+     */
+    private void actualizarBeneficios(String tipoPlan) {
+
+        if ("Básico".equals(tipoPlan)) {
+
+            lblBeneficiosIncluidos.setText(
+                    "Beneficios incluidos:\n"
+                            + "• Acompañamiento con entrenador"
+            );
+
+        } else if ("Premium".equals(tipoPlan)) {
+
+            lblBeneficiosIncluidos.setText(
+                    "Beneficios incluidos:\n"
+                            + "• Acceso a zonas deportivas\n"
+                            + "• Clases grupales\n"
+                            + "• Acompañamiento con entrenador"
+            );
+
+        } else {
+
+            /*
+             * En personalizado no mostramos otro mensaje aquí,
+             * porque el Label que está dentro del panel ya dice:
+             * "Seleccione los beneficios".
+             */
+            lblBeneficiosIncluidos.setText("");
+        }
+    }
+
+    /**
      * Registra un nuevo plan de entrenamiento.
+     *
+     * Utiliza una fábrica diferente dependiendo del tipo
+     * de plan seleccionado.
+     *
+     * Para el plan personalizado se pueden seleccionar
+     * uno, dos o los tres beneficios disponibles.
      */
     @FXML
     private void registrarPlan() {
@@ -105,6 +188,7 @@ public class PlanViewController {
         try {
 
             String tipoPlan = cmbTipoPlan.getValue();
+
             String codigo = txtCodigo.getText();
             String nombre = txtNombre.getText();
             String descripcion = txtDescripcion.getText();
@@ -120,6 +204,9 @@ public class PlanViewController {
 
             PlanEntrenamiento plan;
 
+            /*
+             * PLAN BÁSICO
+             */
             if ("Básico".equals(tipoPlan)) {
 
                 FactoryPlan factory =
@@ -134,6 +221,17 @@ public class PlanViewController {
                         estado
                 );
 
+                /*
+                 * El plan básico incluye:
+                 * Acompañamiento con entrenador.
+                 */
+                plan.agregarBeneficio(
+                        BeneficioPlan.ACOMPANAMIENTO_ENTRENADOR
+                );
+
+                /*
+                 * PLAN PREMIUM
+                 */
             } else if ("Premium".equals(tipoPlan)) {
 
                 FactoryPlan factory =
@@ -148,6 +246,24 @@ public class PlanViewController {
                         estado
                 );
 
+                /*
+                 * El plan premium incluye los tres beneficios.
+                 */
+                plan.agregarBeneficio(
+                        BeneficioPlan.ACCESO_ZONAS_DEPORTIVAS
+                );
+
+                plan.agregarBeneficio(
+                        BeneficioPlan.CLASES_GRUPALES
+                );
+
+                plan.agregarBeneficio(
+                        BeneficioPlan.ACOMPANAMIENTO_ENTRENADOR
+                );
+
+                /*
+                 * PLAN PERSONALIZADO
+                 */
             } else {
 
                 int sesiones =
@@ -173,8 +289,42 @@ public class PlanViewController {
                         especialidad,
                         objetivos
                 );
+
+                /*
+                 * Se agrega cada beneficio que el usuario
+                 * haya seleccionado.
+                 *
+                 * Puede seleccionar:
+                 * - Solo uno.
+                 * - Dos.
+                 * - Los tres.
+                 */
+
+                if (chkAccesoZonas.isSelected()) {
+
+                    plan.agregarBeneficio(
+                            BeneficioPlan.ACCESO_ZONAS_DEPORTIVAS
+                    );
+                }
+
+                if (chkClasesGrupales.isSelected()) {
+
+                    plan.agregarBeneficio(
+                            BeneficioPlan.CLASES_GRUPALES
+                    );
+                }
+
+                if (chkAcompanamientoEntrenador.isSelected()) {
+
+                    plan.agregarBeneficio(
+                            BeneficioPlan.ACOMPANAMIENTO_ENTRENADOR
+                    );
+                }
             }
 
+            /*
+             * Registrar el plan en el gimnasio.
+             */
             gimnasioController.registrarPlan(plan);
 
             mostrarMensaje(
@@ -202,7 +352,8 @@ public class PlanViewController {
     }
 
     /**
-     * Limpia los campos de la interfaz.
+     * Limpia todos los campos de la interfaz
+     * después de registrar un plan.
      */
     private void limpiarCampos() {
 
@@ -216,12 +367,19 @@ public class PlanViewController {
         txtEspecialidad.clear();
         txtObjetivos.clear();
 
+        chkAccesoZonas.setSelected(false);
+        chkClasesGrupales.setSelected(false);
+        chkAcompanamientoEntrenador.setSelected(false);
+
         cmbTipoPlan.setValue("Básico");
         cmbEstado.setValue(EstadoPlan.ACTIVO);
     }
 
     /**
-     * Muestra un mensaje al usuario.
+     * Muestra un mensaje informativo al usuario.
+     *
+     * @param titulo título de la ventana
+     * @param mensaje mensaje que se mostrará
      */
     private void mostrarMensaje(String titulo, String mensaje) {
 

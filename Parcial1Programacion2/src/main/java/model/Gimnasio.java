@@ -134,8 +134,11 @@ public final class Gimnasio {
 
         for (Inscripcion inscripcion : listInscripciones) {
 
-            if (!inscripcion.getFechaInscripcion().isBefore(fechaInicio)
-                    && !inscripcion.getFechaInscripcion().isAfter(fechaFin)) {
+            LocalDate fechaInscripcion =
+                    inscripcion.getFechaInscripcion().toLocalDate();
+
+            if (!fechaInscripcion.isBefore(fechaInicio)
+                    && !fechaInscripcion.isAfter(fechaFin)) {
 
                 total += inscripcion.getValorTotal();
             }

@@ -59,8 +59,8 @@ public class ClienteViewController {
      * Obtiene la instancia única del gimnasio mediante el patrón Singleton y crea el controlador correspondiente.
      */
     public ClienteViewController() {
-        Gimnasio gimnasio = Gimnasio.getInstancia();
-        gimnasioController = new GimnasioController(gimnasio);
+        gimnasioController =
+                new GimnasioController(Gimnasio.getInstancia());
     }
 
     /**

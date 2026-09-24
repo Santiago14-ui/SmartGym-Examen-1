@@ -2,82 +2,117 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="viewController.PlanViewController"
-      spacing="10">
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="viewController.PlanViewController"
+            fitToWidth="true"
+            fitToHeight="true"
+            pannable="true">
 
-    <padding>
-        <Insets top="20"
-                right="20"
-                bottom="20"
-                left="20"/>
-    </padding>
+    <content>
 
-    <Label text="Registro de Planes de Entrenamiento"/>
+        <VBox spacing="10">
 
-    <Label text="Tipo de plan"/>
+            <padding>
+                <Insets top="20"
+                        right="20"
+                        bottom="20"
+                        left="20"/>
+            </padding>
 
-    <ComboBox fx:id="cmbTipoPlan"
-              prefWidth="250"/>
+            <Label text="Registro de Planes de Entrenamiento"/>
 
-    <Label text="Código"/>
+            <Label text="Tipo de plan"/>
 
-    <TextField fx:id="txtCodigo"
-               promptText="Ingrese el código"/>
+            <ComboBox fx:id="cmbTipoPlan"
+                      prefWidth="250"/>
 
-    <Label text="Nombre"/>
+            <Label text="Código"/>
 
-    <TextField fx:id="txtNombre"
-               promptText="Ingrese el nombre"/>
+            <TextField fx:id="txtCodigo"
+                       promptText="Ingrese el código"/>
 
-    <Label text="Descripción"/>
+            <Label text="Nombre"/>
 
-    <TextField fx:id="txtDescripcion"
-               promptText="Ingrese la descripción"/>
+            <TextField fx:id="txtNombre"
+                       promptText="Ingrese el nombre"/>
 
-    <Label text="Duración en meses"/>
+            <Label text="Descripción"/>
 
-    <TextField fx:id="txtDuracion"
-               promptText="Ingrese la duración"/>
+            <TextField fx:id="txtDescripcion"
+                       promptText="Ingrese la descripción"/>
 
-    <Label text="Valor mensual"/>
+            <Label text="Duración en meses"/>
 
-    <TextField fx:id="txtValorMensual"
-               promptText="Ingrese el valor mensual"/>
+            <TextField fx:id="txtDuracion"
+                       promptText="Ingrese la duración"/>
 
-    <Label text="Estado"/>
+            <Label text="Valor mensual"/>
 
-    <ComboBox fx:id="cmbEstado"
-              prefWidth="250"/>
+            <TextField fx:id="txtValorMensual"
+                       promptText="Ingrese el valor mensual"/>
 
-    <!-- Campos exclusivos del plan personalizado -->
-    <VBox fx:id="panelPersonalizado"
-          spacing="10">
+            <Label text="Estado"/>
 
-        <Label text="Cantidad de sesiones con entrenador"/>
+            <ComboBox fx:id="cmbEstado"
+                      prefWidth="250"/>
 
-        <TextField fx:id="txtSesiones"
-                   promptText="Ingrese la cantidad de sesiones"/>
+            <!-- Beneficios de los planes básico y premium -->
+            <VBox fx:id="panelBeneficiosIncluidos"
+                  spacing="5">
 
-        <Label text="Especialidad requerida"/>
+                <Label text="Beneficios del plan"/>
 
-        <TextField fx:id="txtEspecialidad"
-                   promptText="Ingrese la especialidad"/>
+                <Label fx:id="lblBeneficiosIncluidos"
+                       text=""
+                       wrapText="true"/>
 
-        <Label text="Objetivos del cliente"/>
+            </VBox>
 
-        <TextField fx:id="txtObjetivos"
-                   promptText="Ingrese los objetivos"/>
+            <!-- Campos exclusivos del plan personalizado -->
+            <VBox fx:id="panelPersonalizado"
+                  spacing="8">
 
-    </VBox>
+                <Label text="Cantidad de sesiones con entrenador"/>
 
-    <Button text="Registrar plan"
-            onAction="#registrarPlan"/>
+                <TextField fx:id="txtSesiones"
+                           promptText="Ingrese la cantidad de sesiones"/>
 
-</VBox>
+                <Label text="Especialidad requerida"/>
+
+                <TextField fx:id="txtEspecialidad"
+                           promptText="Ingrese la especialidad"/>
+
+                <Label text="Objetivos del cliente"/>
+
+                <TextField fx:id="txtObjetivos"
+                           promptText="Ingrese los objetivos"/>
+
+                <Label text="Seleccione los beneficios"/>
+
+                <CheckBox fx:id="chkAccesoZonas"
+                          text="Acceso a zonas deportivas"/>
+
+                <CheckBox fx:id="chkClasesGrupales"
+                          text="Clases grupales"/>
+
+                <CheckBox fx:id="chkAcompanamientoEntrenador"
+                          text="Acompañamiento con entrenador"/>
+
+            </VBox>
+
+            <Button text="Registrar plan"
+                    onAction="#registrarPlan"/>
+
+        </VBox>
+
+    </content>
+
+</ScrollPane>

@@ -36,7 +36,8 @@ public class EntrenadorViewController {
      */
     @FXML
     public void initialize() {
-        gimnasioController = new GimnasioController(Gimnasio.getInstancia());
+        gimnasioController =
+                new GimnasioController(Gimnasio.getInstancia());
     }
 
     /**

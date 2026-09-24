@@ -7,9 +7,8 @@ import java.util.List;
  * Representa un entrenador registrado en el gimnasio.
  */
 public class Entrenador {
-    /**
-     * Atributos de la clase
-     */
+
+    // Atributos de la clase
     private String identificacion;
     private String nombre;
     private String especialidad;
@@ -24,6 +23,7 @@ public class Entrenador {
      */
     public Entrenador(String identificacion, String nombre, String especialidad,
                       String telefono, double tarifaPorSesion) {
+
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.especialidad = especialidad;
@@ -88,14 +88,12 @@ public class Entrenador {
         return inscripciones;
     }
 
+    /**
+     * Representación del entrenador.
+     * Se muestra solamente el nombre en los ComboBox.
+     */
     @Override
     public String toString() {
-        return "Entrenador{" +
-                "identificacion='" + identificacion + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", especialidad='" + especialidad + '\'' +
-                ", telefono=" + telefono +
-                ", tarifaPorSesion=" + tarifaPorSesion +
-                '}';
+        return nombre;
     }
 }
