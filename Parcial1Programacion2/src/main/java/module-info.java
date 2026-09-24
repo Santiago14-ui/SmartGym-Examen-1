@@ -14,4 +14,7 @@ module java {
 
     opens controller to javafx.fxml;
     exports controller;
+
+    opens factory to javafx.fxml;
+    exports factory;
 }
