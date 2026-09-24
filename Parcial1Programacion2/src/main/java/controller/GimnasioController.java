@@ -24,107 +24,109 @@ public class GimnasioController {
         this.gimnasio = gimnasio;
     }
 
-    /**
-     * Registra un cliente en el gimnasio.
-     */
+    // =========================
+    // CLIENTES
+    // =========================
+
     public void registrarCliente(Cliente cliente) {
         gimnasio.registrarCliente(cliente);
     }
 
-    /**
-     * Busca un cliente por su número de teléfono.
-     */
+    public void actualizarCliente(Cliente cliente) {
+        gimnasio.actualizarCliente(cliente);
+    }
+
     public Cliente buscarClientePorTelefono(String telefono) {
         return gimnasio.buscarClientePorTelefono(telefono);
     }
 
-    /**
-     * Elimina un cliente del gimnasio.
-     */
     public void eliminarCliente(Cliente cliente) {
         gimnasio.eliminarCliente(cliente);
     }
 
-    /**
-     * Registra un entrenador en el gimnasio.
-     */
+    // =========================
+    // ENTRENADORES
+    // =========================
+
     public void registrarEntrenador(Entrenador entrenador) {
         gimnasio.registrarEntrenador(entrenador);
     }
 
-    /**
-     * Registra un plan de entrenamiento.
-     */
+    public void actualizarEntrenador(Entrenador entrenador) {
+        gimnasio.actualizarEntrenador(entrenador);
+    }
+
+    public Entrenador buscarEntrenadorPorIdentificacion(String identificacion) {
+        return gimnasio.buscarEntrenadorPorIdentificacion(identificacion);
+    }
+
+    public void eliminarEntrenador(Entrenador entrenador) {
+        gimnasio.eliminarEntrenador(entrenador);
+    }
+
+    // =========================
+    // PLANES
+    // =========================
+
     public void registrarPlan(PlanEntrenamiento plan) {
         gimnasio.registrarPlan(plan);
     }
 
-    /**
-     * Registra un servicio adicional.
-     */
+    // =========================
+    // SERVICIOS
+    // =========================
+
     public void registrarServicioAdicional(ServicioAdicional servicio) {
         gimnasio.registrarServicioAdicional(servicio);
     }
 
-    /**
-     * Registra una inscripción.
-     */
+    // =========================
+    // INSCRIPCIONES
+    // =========================
+
     public void registrarInscripcion(Inscripcion inscripcion) {
         gimnasio.registrarInscripcion(inscripcion);
     }
 
-    /**
-     * Obtiene la lista de clientes.
-     */
+    // =========================
+    // LISTAS
+    // =========================
+
     public List<Cliente> getListClientes() {
         return gimnasio.getListClientes();
     }
 
-    /**
-     * Obtiene la lista de entrenadores.
-     */
     public List<Entrenador> getListEntrenadores() {
         return gimnasio.getListEntrenadores();
     }
 
-    /**
-     * Obtiene la lista de planes de entrenamiento.
-     */
     public List<PlanEntrenamiento> getListPlanEntrenamientos() {
         return gimnasio.getListPlanes();
     }
 
-    /**
-     * Obtiene la lista de servicios adicionales.
-     */
     public List<ServicioAdicional> getListServiciosAdicionales() {
         return gimnasio.getListServiciosAdicionales();
     }
 
-    /**
-     * Obtiene la lista de inscripciones.
-     */
     public List<Inscripcion> getListInscripciones() {
         return gimnasio.getListInscripciones();
     }
 
-    /**
-     * Busca si un número es perfecto.
-     */
+    // =========================
+    // OTROS
+    // =========================
+
     public boolean esNumeroPerfecto(String numero) {
         return gimnasio.esNumeroPerfecto(numero);
     }
 
-    /**
-     * Calcula los ingresos del gimnasio entre dos fechas.
-     */
-    public double calcularIngresos(LocalDate fechaInicio, LocalDate fechaFin) {
+    public double calcularIngresos(
+            LocalDate fechaInicio,
+            LocalDate fechaFin) {
+
         return gimnasio.calcularIngresos(fechaInicio, fechaFin);
     }
 
-    /**
-     * Obtiene el gimnasio administrado por el controlador.
-     */
     public Gimnasio getGimnasio() {
         return gimnasio;
     }

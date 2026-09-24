@@ -5,23 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase del gimnasio utilizando Singleton
+ * Clase del gimnasio utilizando Singleton.
  */
 public final class Gimnasio {
 
     /**
-     * Instancia unica de la clase
+     * Instancia única de la clase.
      */
     private static Gimnasio instancia;
 
-    /**
-     * Atributos de la clase
-     */
+    // Atributos de la clase
     private String nombreComercial;
     private String nit;
     private String direccion;
     private String telefono;
     private String correoElectronico;
+
     private List<Cliente> listClientes;
     private List<Entrenador> listEntrenadores;
     private List<PlanEntrenamiento> listPlanes;
@@ -29,9 +28,10 @@ public final class Gimnasio {
     private List<Inscripcion> listInscripciones;
 
     /**
-     * Constructor privado con datos por defecto
+     * Constructor privado con datos por defecto.
      */
     private Gimnasio() {
+
         this.nombreComercial = "SmartGym";
         this.nit = "123456";
         this.direccion = "Universidad del Quindio";
@@ -46,10 +46,10 @@ public final class Gimnasio {
     }
 
     /**
-     * Punto de acceso a la unica instancia de la clase
-     * @return Retorna una unica instancia
+     * Punto de acceso a la única instancia de la clase.
      */
     public static Gimnasio getInstancia() {
+
         if (instancia == null) {
             instancia = new Gimnasio();
         }
@@ -57,19 +57,27 @@ public final class Gimnasio {
         return instancia;
     }
 
-    /**
-     * Funcion para agregar un cliente a la lista de clientes
-     * @param cliente Cliente a agregar
-     */
+    // =========================
+    // CLIENTES
+    // =========================
+
     public void registrarCliente(Cliente cliente) {
         listClientes.add(cliente);
     }
 
-    /**
-     * Funcion para buscar un cliente por telefono registrado
-     * @param telefono telefono utilizado para buscar en la base de datos
-     * @return
-     */
+    public void actualizarCliente(Cliente clienteActualizado) {
+
+        for (int i = 0; i < listClientes.size(); i++) {
+
+            if (listClientes.get(i).getDocumentoIdentidad()
+                    .equals(clienteActualizado.getDocumentoIdentidad())) {
+
+                listClientes.set(i, clienteActualizado);
+                return;
+            }
+        }
+    }
+
     public Cliente buscarClientePorTelefono(String telefono) {
 
         for (Cliente cliente : listClientes) {
@@ -82,24 +90,105 @@ public final class Gimnasio {
         return null;
     }
 
+    public void eliminarCliente(Cliente cliente) {
+        listClientes.remove(cliente);
+    }
+
+    // =========================
+    // ENTRENADORES
+    // =========================
+
     /**
-     * Funcion para determinar si un numero entero es perfecto
-     * @param numero Numero a determinar si es perfecto o no
-     * @return boolean
+     * Registra un entrenador.
      */
+    public void registrarEntrenador(Entrenador entrenador) {
+        listEntrenadores.add(entrenador);
+    }
+
+    /**
+     * Busca un entrenador mediante su identificación.
+     */
+    public Entrenador buscarEntrenadorPorIdentificacion(String identificacion) {
+
+        for (Entrenador entrenador : listEntrenadores) {
+
+            if (entrenador.getIdentificacion().equals(identificacion)) {
+                return entrenador;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Actualiza un entrenador utilizando su identificación.
+     */
+    public void actualizarEntrenador(Entrenador entrenadorActualizado) {
+
+        for (int i = 0; i < listEntrenadores.size(); i++) {
+
+            if (listEntrenadores.get(i).getIdentificacion()
+                    .equals(entrenadorActualizado.getIdentificacion())) {
+
+                listEntrenadores.set(i, entrenadorActualizado);
+                return;
+            }
+        }
+    }
+
+    /**
+     * Elimina un entrenador.
+     */
+    public void eliminarEntrenador(Entrenador entrenador) {
+        listEntrenadores.remove(entrenador);
+    }
+
+    // =========================
+    // PLANES
+    // =========================
+
+    public void registrarPlan(PlanEntrenamiento plan) {
+        listPlanes.add(plan);
+    }
+
+    // =========================
+    // SERVICIOS
+    // =========================
+
+    public void registrarServicioAdicional(ServicioAdicional servicio) {
+        listServiciosAdicionales.add(servicio);
+    }
+
+    // =========================
+    // INSCRIPCIONES
+    // =========================
+
+    public void registrarInscripcion(Inscripcion inscripcion) {
+        listInscripciones.add(inscripcion);
+    }
+
+    // =========================
+    // NÚMERO PERFECTO
+    // =========================
+
     public boolean esNumeroPerfecto(String numero) {
+
         long numeroLong = Long.parseLong(numero);
-        if (numeroLong <= 1) return false;
 
-        long suma = 1; // El 1 siempre es divisor de cualquier número
+        if (numeroLong <= 1) {
+            return false;
+        }
 
-        // Buscamos divisores de forma eficiente usando la raíz cuadrada
+        long suma = 1;
+
         for (long i = 2; i * i <= numeroLong; i++) {
+
             if (numeroLong % i == 0) {
+
                 suma += i;
-                // Si el divisor hermano es diferente, también lo sumamos
+
                 if (i * i != numeroLong) {
-                    suma += (numeroLong / i);
+                    suma += numeroLong / i;
                 }
             }
         }
@@ -107,26 +196,9 @@ public final class Gimnasio {
         return suma == numeroLong;
     }
 
-    //Getters y setters
-    public void eliminarCliente(Cliente cliente) {
-        listClientes.remove(cliente);
-    }
-
-    public void registrarEntrenador(Entrenador entrenador) {
-        listEntrenadores.add(entrenador);
-    }
-
-    public void registrarPlan(PlanEntrenamiento plan) {
-        listPlanes.add(plan);
-    }
-
-    public void registrarServicioAdicional(ServicioAdicional servicio) {
-        listServiciosAdicionales.add(servicio);
-    }
-
-    public void registrarInscripcion(Inscripcion inscripcion) {
-        listInscripciones.add(inscripcion);
-    }
+    // =========================
+    // INGRESOS
+    // =========================
 
     public double calcularIngresos(LocalDate fechaInicio, LocalDate fechaFin) {
 
@@ -146,6 +218,10 @@ public final class Gimnasio {
 
         return total;
     }
+
+    // =========================
+    // GETTERS Y SETTERS
+    // =========================
 
     public String getNombreComercial() {
         return nombreComercial;
@@ -215,7 +291,9 @@ public final class Gimnasio {
         return listServiciosAdicionales;
     }
 
-    public void setListServiciosAdicionales(List<ServicioAdicional> listServiciosAdicionales) {
+    public void setListServiciosAdicionales(
+            List<ServicioAdicional> listServiciosAdicionales) {
+
         this.listServiciosAdicionales = listServiciosAdicionales;
     }
 
@@ -229,6 +307,7 @@ public final class Gimnasio {
 
     @Override
     public String toString() {
+
         return "Gimnasio{" +
                 "nombreComercial='" + nombreComercial + '\'' +
                 ", nit='" + nit + '\'' +

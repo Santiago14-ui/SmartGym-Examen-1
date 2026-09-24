@@ -12,15 +12,14 @@ import java.time.LocalDate;
 /**
  * Controlador de la interfaz gráfica para la gestión de clientes.
  *
- * Permite registrar nuevos clientes, buscar clientes mediante
- * su número de teléfono y verificar si el número ingresado
- * corresponde a un número perfecto.
+ * Permite:
+ * - Registrar clientes.
+ * - Buscar clientes por documento.
+ * - Actualizar clientes.
+ * - Eliminar clientes.
  */
 public class ClienteViewController {
 
-    /**
-     * Registrar un cliente.
-     */
     @FXML
     private TextField txtNombre;
 
@@ -36,27 +35,16 @@ public class ClienteViewController {
     @FXML
     private TextField txtEdad;
 
-    /**
-     * Buscar un cliente por teléfono.
-     */
     @FXML
-    private TextField txtBuscarTelefono;
+    private TextField txtBuscarDocumento;
 
-    /**
-     * Mostrar los resultados.
-     */
     @FXML
     private Label lblResultado;
 
-    /**
-     * Encargado de comunicarse con el gimnasio.
-     */
     private GimnasioController gimnasioController;
 
     /**
      * Constructor del controlador.
-     *
-     * Obtiene la instancia única del gimnasio mediante el patrón Singleton y crea el controlador correspondiente.
      */
     public ClienteViewController() {
         gimnasioController =
@@ -64,7 +52,7 @@ public class ClienteViewController {
     }
 
     /**
-     * Registra un nuevo cliente en el gimnasio utilizando la información ingresada en los campos de la interfaz.
+     * Registra un nuevo cliente.
      */
     @FXML
     public void registrarCliente() {
@@ -99,71 +87,154 @@ public class ClienteViewController {
         } catch (Exception e) {
 
             lblResultado.setText("Error al registrar el cliente.");
-
         }
     }
 
     /**
-     * Busca un cliente mediante su número de teléfono.
-     *
-     * También verifica si el número ingresado corresponde
-     * a un número perfecto.
+     * Busca un cliente mediante su documento.
      */
     @FXML
     public void buscarCliente() {
 
-        String telefono = txtBuscarTelefono.getText();
+        String documento = txtBuscarDocumento.getText();
 
-        if (telefono.isEmpty()) {
-            lblResultado.setText("Ingrese un número de teléfono.");
+        if (documento.isEmpty()) {
+
+            lblResultado.setText("Ingrese un documento.");
             return;
         }
 
-        Cliente cliente = gimnasioController.buscarClientePorTelefono(telefono);
+        Cliente cliente = buscarClientePorDocumento(documento);
 
         if (cliente != null) {
 
-            boolean esPerfecto = gimnasioController.esNumeroPerfecto(telefono);
+            txtNombre.setText(cliente.getNombreCompleto());
+            txtDocumento.setText(cliente.getDocumentoIdentidad());
+            txtTelefono.setText(cliente.getTelefono());
+            txtCorreo.setText(cliente.getCorreoElectronico());
+            txtEdad.setText(String.valueOf(cliente.getEdad()));
 
-            if (esPerfecto) {
-
-                lblResultado.setText(
-                        "Cliente encontrado: " +
-                                cliente.getNombreCompleto() +
-                                "\nEl teléfono corresponde a un número perfecto."
-                );
-
-            } else {
-
-                lblResultado.setText(
-                        "Cliente encontrado: " +
-                                cliente.getNombreCompleto() +
-                                "\nEl teléfono no corresponde a un número perfecto."
-                );
-            }
+            lblResultado.setText(
+                    "Cliente encontrado: " + cliente.getNombreCompleto()
+            );
 
         } else {
 
-            boolean esPerfecto = gimnasioController.esNumeroPerfecto(telefono);
-
-            if (esPerfecto) {
-
-                lblResultado.setText(
-                        "No se encontró el cliente.\n" +
-                                "El número ingresado es un número perfecto."
-                );
-
-            } else {
-
-                lblResultado.setText(
-                        "No se encontró ningún cliente con ese teléfono."
-                );
-            }
+            lblResultado.setText(
+                    "No se encontró ningún cliente con ese documento."
+            );
         }
     }
 
     /**
-     * Limpia los campos utilizados para registrar clientes.
+     * Actualiza los datos del cliente seleccionado.
+     */
+    @FXML
+    public void actualizarCliente() {
+
+        try {
+
+            String nombre = txtNombre.getText();
+            String documento = txtDocumento.getText();
+            String telefono = txtTelefono.getText();
+            String correo = txtCorreo.getText();
+            int edad = Integer.parseInt(txtEdad.getText());
+
+            Cliente clienteExistente =
+                    buscarClientePorDocumento(documento);
+
+            if (clienteExistente == null) {
+
+                lblResultado.setText(
+                        "No existe un cliente con ese documento."
+                );
+
+                return;
+            }
+
+            clienteExistente.setNombreCompleto(nombre);
+            clienteExistente.setTelefono(telefono);
+            clienteExistente.setCorreoElectronico(correo);
+            clienteExistente.setEdad(edad);
+
+            gimnasioController.actualizarCliente(clienteExistente);
+
+            lblResultado.setText(
+                    "Cliente actualizado correctamente."
+            );
+
+        } catch (NumberFormatException e) {
+
+            lblResultado.setText(
+                    "La edad debe ser un número válido."
+            );
+
+        } catch (Exception e) {
+
+            lblResultado.setText(
+                    "Error al actualizar el cliente."
+            );
+        }
+    }
+
+    /**
+     * Elimina un cliente utilizando su documento.
+     */
+    @FXML
+    public void eliminarCliente() {
+
+        String documento = txtDocumento.getText();
+
+        if (documento.isEmpty()) {
+
+            lblResultado.setText(
+                    "Ingrese o busque un cliente primero."
+            );
+
+            return;
+        }
+
+        Cliente cliente =
+                buscarClientePorDocumento(documento);
+
+        if (cliente != null) {
+
+            gimnasioController.eliminarCliente(cliente);
+
+            lblResultado.setText(
+                    "Cliente eliminado correctamente."
+            );
+
+            limpiarCampos();
+
+        } else {
+
+            lblResultado.setText(
+                    "No se encontró el cliente."
+            );
+        }
+    }
+
+    /**
+     * Busca un cliente por documento.
+     */
+    private Cliente buscarClientePorDocumento(String documento) {
+
+        for (Cliente cliente :
+                gimnasioController.getListClientes()) {
+
+            if (cliente.getDocumentoIdentidad()
+                    .equals(documento)) {
+
+                return cliente;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Limpia los campos del formulario.
      */
     private void limpiarCampos() {
 
@@ -172,5 +243,6 @@ public class ClienteViewController {
         txtTelefono.clear();
         txtCorreo.clear();
         txtEdad.clear();
+        txtBuscarDocumento.clear();
     }
 }
