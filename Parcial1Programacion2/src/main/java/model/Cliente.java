@@ -10,7 +10,7 @@ import java.util.List;
 public class Cliente {
 
     /**
-     * Atributos
+     * Atributos de la clase
      */
     private String nombreCompleto;
     private String documentoIdentidad;

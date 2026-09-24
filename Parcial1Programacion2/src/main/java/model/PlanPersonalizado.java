@@ -4,7 +4,9 @@ package model;
  * Representa un plan personalizado de entrenamiento.
  */
 public class PlanPersonalizado extends PlanEntrenamiento {
-
+    /**
+     * Atributos de la clase
+     */
     private int cantidadSesionesEntrenador;
     private String especialidadRequerida;
     private String objetivosCliente;

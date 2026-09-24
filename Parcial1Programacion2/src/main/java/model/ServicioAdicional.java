@@ -4,7 +4,9 @@ package model;
  * Representa un servicio adicional ofrecido por el gimnasio.
  */
 public class ServicioAdicional {
-
+    /**
+     * Atributos de la clase
+     */
     private String codigo;
     private String nombre;
     private String descripcion;

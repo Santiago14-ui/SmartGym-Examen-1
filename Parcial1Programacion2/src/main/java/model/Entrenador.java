@@ -7,11 +7,13 @@ import java.util.List;
  * Representa un entrenador registrado en el gimnasio.
  */
 public class Entrenador {
-
+    /**
+     * Atributos de la clase
+     */
     private String identificacion;
     private String nombre;
     private String especialidad;
-    private int telefono;
+    private String telefono;
     private double tarifaPorSesion;
 
     private Gimnasio gimnasio;
@@ -21,7 +23,7 @@ public class Entrenador {
      * Crea un entrenador con sus datos básicos.
      */
     public Entrenador(String identificacion, String nombre, String especialidad,
-                      int telefono, double tarifaPorSesion) {
+                      String telefono, double tarifaPorSesion) {
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.especialidad = especialidad;
@@ -61,7 +63,7 @@ public class Entrenador {
     /**
      * Obtiene el teléfono del entrenador.
      */
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 

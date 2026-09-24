@@ -9,9 +9,11 @@ import java.util.List;
  */
 public class Inscripcion {
 
+    /**
+     * Atributos de la clase
+     */
     private LocalDate fechaInscripcion;
     private double valorTotal;
-
     private Cliente cliente;
     private PlanEntrenamiento plan;
     private Entrenador entrenador;

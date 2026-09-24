@@ -7,14 +7,15 @@ import java.util.List;
  * Define la información común de los planes de entrenamiento.
  */
 public abstract class PlanEntrenamiento {
-
+    /**
+     * Atributos de la clase
+     */
     private String codigo;
     private String nombre;
     private String descripcion;
     private int duracionMeses;
     private double valorMensual;
     private EstadoPlan estado;
-
     private Gimnasio gimnasio;
     private List<Inscripcion> inscripciones;
 
