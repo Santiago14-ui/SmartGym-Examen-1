@@ -25,4 +25,7 @@
     <Button text="Gestionar Entrenadores"
             onAction="#abrirEntrenadores"/>
 
+    <Button text="Gestionar Planes"
+            onAction="#abrirPlanes"/>
+
 </VBox>

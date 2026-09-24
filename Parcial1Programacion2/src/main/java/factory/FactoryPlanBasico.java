@@ -10,17 +10,24 @@ import model.PlanEntrenamiento;
 public class FactoryPlanBasico extends FactoryPlan {
 
     /**
-     * Crea un plan básico con valores iniciales.
+     * Crea un plan básico con los datos recibidos.
      */
     @Override
-    public PlanEntrenamiento crearPlan() {
+    public PlanEntrenamiento crearPlan(
+            String codigo,
+            String nombre,
+            String descripcion,
+            int duracionMeses,
+            double valorMensual,
+            EstadoPlan estado
+    ) {
         return new PlanBasico(
-                "001",
-                "Plan Básico",
-                "Plan de entrenamiento básico",
-                1,
-                80000,
-                EstadoPlan.ACTIVO
+                codigo,
+                nombre,
+                descripcion,
+                duracionMeses,
+                valorMensual,
+                estado
         );
     }
 }
