@@ -87,22 +87,24 @@ public final class Gimnasio {
      * @param numero Numero a determinar si es perfecto o no
      * @return boolean
      */
-    public boolean esNumeroPerfecto(int numero) {
+    public boolean esNumeroPerfecto(String numero) {
+        long numeroLong = Long.parseLong(numero);
+        if (numeroLong <= 1) return false;
 
-        if (numero <= 1) {
-            return false;
-        }
+        long suma = 1; // El 1 siempre es divisor de cualquier número
 
-        int suma = 0;
-
-        for (int i = 1; i < numero; i++) {
-
-            if (numero % i == 0) {
+        // Buscamos divisores de forma eficiente usando la raíz cuadrada
+        for (long i = 2; i * i <= numeroLong; i++) {
+            if (numeroLong % i == 0) {
                 suma += i;
+                // Si el divisor hermano es diferente, también lo sumamos
+                if (i * i != numeroLong) {
+                    suma += (numeroLong / i);
+                }
             }
         }
 
-        return suma == numero;
+        return suma == numeroLong;
     }
 
     //Getters y setters

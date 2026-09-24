@@ -22,7 +22,7 @@ public class AppTest {
 
         cliente1 = new Cliente("Santiago Del Toro", "123456789", "3111111111", "Santiaguito@gmail.com", 24, LocalDate.now());
         cliente2 = new Cliente("Jaime Andres Romero Gil", "987654321", "3222222222", "superGil@gmail.com", 19, LocalDate.now());
-        cliente3 = new Cliente("Maria Luisa Cardona Ruiz", "741852963", "3333333333", "mariaruiz@gmail.com", 22, LocalDate.now());
+        cliente3 = new Cliente("Maria Luisa Cardona Ruiz", "741852963", "6", "mariaruiz@gmail.com", 22, LocalDate.now());
         smartGym.registrarCliente(cliente1); smartGym.registrarCliente(cliente2);  smartGym.registrarCliente(cliente3);
 
         FactoryPlanBasico factoryPlanBasico = new FactoryPlanBasico();
@@ -55,10 +55,11 @@ public class AppTest {
         LOGGER.info("Inicio de testAssertTrue");
         assertTrue(cliente1.getTelefono().length() == 10);
         assertTrue(cliente2.getTelefono().length() == 10);
-        assertTrue(cliente3.getTelefono().length() == 10);
         assertTrue(smartGym.getTelefono().length() == 10);
         assertTrue(entrenador1.getTelefono().length() == 10);
         assertTrue(entrenador2.getTelefono().length() == 10);
+        assertTrue(smartGym.esNumeroPerfecto(cliente3.getTelefono()));
+        assertTrue(smartGym.calcularIngresos(LocalDate.of(2026, 9, 1), LocalDate.of(2026, 9, 30)) > 10000);
         LOGGER.info("Fin de testAssertTrue");
     }
 
@@ -69,6 +70,7 @@ public class AppTest {
         assertFalse(smartGym.getListInscripciones().isEmpty());
         assertFalse(inscripcion1.getFechaInscripcion().isBefore(LocalDate.now()));
         assertFalse(inscripcion2.getCliente() == null);
+        assertFalse(smartGym.esNumeroPerfecto(cliente2.getTelefono()));
         LOGGER.info("Fin de testAssertFalse");
     }
 
