@@ -15,7 +15,6 @@ public abstract class PlanEntrenamiento {
     private int duracionMeses;
     private double valorMensual;
     private EstadoPlan estado;
-    private Gimnasio gimnasio;
     private List<Inscripcion> inscripciones;
     private List<BeneficioPlan> beneficios;
 
@@ -81,10 +80,6 @@ public abstract class PlanEntrenamiento {
 
     public EstadoPlan getEstado() {
         return estado;
-    }
-
-    public Gimnasio getGimnasio() {
-        return gimnasio;
     }
 
     public List<Inscripcion> getInscripciones() {

@@ -20,6 +20,7 @@ public final class Gimnasio {
     private String direccion;
     private String telefono;
     private String correoElectronico;
+    private String paginaWeb;
 
     private List<Cliente> listClientes;
     private List<Entrenador> listEntrenadores;
@@ -37,6 +38,7 @@ public final class Gimnasio {
         this.direccion = "Universidad del Quindio";
         this.telefono = "3000000000";
         this.correoElectronico = "smartGym@yahoo.com";
+        this.paginaWeb = "AlgunaPaginaWeb.com";
 
         listClientes = new ArrayList<>();
         listEntrenadores = new ArrayList<>();
@@ -303,6 +305,14 @@ public final class Gimnasio {
 
     public void setListInscripciones(List<Inscripcion> listInscripciones) {
         this.listInscripciones = listInscripciones;
+    }
+
+    public String getPaginaWeb() {
+        return paginaWeb;
+    }
+
+    public void setPaginaWeb(String paginaWeb) {
+        this.paginaWeb = paginaWeb;
     }
 
     @Override

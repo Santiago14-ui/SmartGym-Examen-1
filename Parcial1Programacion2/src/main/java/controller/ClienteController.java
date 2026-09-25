@@ -79,13 +79,6 @@ public class ClienteController {
     }
 
     /**
-     * Obtiene los servicios adicionales del cliente.
-     */
-    public List<ServicioAdicional> getListServiciosAdicionales() {
-        return cliente.getListservicioAdicionales();
-    }
-
-    /**
      * Agrega una inscripción al cliente.
      */
     public void agregarInscripcion(Inscripcion inscripcion) {

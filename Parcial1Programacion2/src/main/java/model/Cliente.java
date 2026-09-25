@@ -18,7 +18,6 @@ public class Cliente {
     private LocalDate fechaRegistro;
     private Gimnasio gimnasio;
     private List<Inscripcion> listInscripciones;
-    private List<ServicioAdicional> listservicioAdicionales;
 
     /**
      * Construye un cliente con la información suministrada.
@@ -33,7 +32,6 @@ public class Cliente {
         this.edad = edad;
         this.fechaRegistro = fechaRegistro;
         this.listInscripciones = new ArrayList<>();
-        this.listservicioAdicionales = new ArrayList<>();
     }
 
     /**
@@ -84,18 +82,10 @@ public class Cliente {
         return listInscripciones;
     }
 
-    public List<ServicioAdicional> getListservicioAdicionales() {
-        return listservicioAdicionales;
-    }
-
     // Setters
 
     public void setListInscripciones(List<Inscripcion> listInscripciones) {
         this.listInscripciones = listInscripciones;
-    }
-
-    public void setListservicioAdicionales(List<ServicioAdicional> listservicioAdicionales) {
-        this.listservicioAdicionales = listservicioAdicionales;
     }
 
     public void setNombreCompleto(String nombreCompleto) {
