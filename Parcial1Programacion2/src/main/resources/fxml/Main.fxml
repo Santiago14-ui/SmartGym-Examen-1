@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<BorderPane prefHeight="654.0" prefWidth="1080.0" styleClass="app-root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<BorderPane prefHeight="641.0" prefWidth="1096.0" styleClass="app-root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.MainViewController">
 
     <left>
         <VBox prefWidth="245" styleClass="sidebar">
@@ -16,19 +18,33 @@
                         <Label styleClass="brand-subtitle" text="GESTIÓN INTELIGENTE" />
                     </VBox>
                 </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="7" styleClass="online-status">
+                    <Label styleClass="online-dot" text="●" />
+                    <Label styleClass="online-text" text="SISTEMA EN LÍNEA" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label styleClass="online-version" text="v1.0" />
+                </HBox>
             </VBox>
 
             <Separator styleClass="sidebar-separator" />
 
             <VBox spacing="7" styleClass="nav-section">
-                <Label styleClass="nav-caption" text="MENÚ PRINCIPAL" />
-                <Button fx:id="btnInicio" onAction="#irInicio" styleClass="nav-button nav-active" text="  Inicio" />
+                <Label styleClass="nav-caption" text="GESTIÓN" />
+                <Button fx:id="btnInicio" onAction="#irInicio" styleClass="nav-button" text="  Inicio" />
                 <Button fx:id="btnClientes" onAction="#irClientes" styleClass="nav-button" text="  Clientes" />
                 <Button fx:id="btnPlanes" onAction="#irPlanes" styleClass="nav-button" text="  Planes" />
                 <Button fx:id="btnEntrenadores" onAction="#irEntrenadores" styleClass="nav-button" text="  Entrenadores" />
                 <Button fx:id="btnServicios" onAction="#irServicios" styleClass="nav-button" text="  Servicios" />
                 <Button fx:id="btnInscripciones" onAction="#irInscripciones" styleClass="nav-button" text="  Inscripciones" />
                 <Button fx:id="btnReportes" onAction="#irReportes" styleClass="nav-button" text="  Reportes" />
+            </VBox>
+
+            <VBox spacing="7" styleClass="nav-section nav-secondary-section">
+                <Label styleClass="nav-caption" text="ACCESOS RÁPIDOS" />
+                <HBox alignment="CENTER_LEFT" spacing="8" styleClass="sidebar-mini-card">
+                    <StackPane styleClass="mini-icon"><Label text="✓" /></StackPane>
+                    <VBox spacing="2"><Label styleClass="mini-card-title" text="Operación estable" /><Label styleClass="mini-card-text" text="Todos los módulos disponibles" /></VBox>
+                </HBox>
             </VBox>
 
             <Region VBox.vgrow="ALWAYS" />
@@ -56,14 +72,19 @@
                     </VBox>
                     <Region HBox.hgrow="ALWAYS" />
                     <VBox alignment="CENTER_RIGHT" spacing="2">
-                        <Label fx:id="lblDate" styleClass="top-date" text="24 de septiembre de 2026" />
-                        <Label fx:id="lblClock" styleClass="top-clock" text="17:52:13" />
+                        <Label styleClass="top-breadcrumb" text="SMARTGYM / ADMINISTRACIÓN" />
+                        <HBox alignment="CENTER_RIGHT" spacing="8">
+                            <Label styleClass="top-status" text="● ACTIVO" />
+                            <Label fx:id="lblDate" styleClass="top-date" text="24 de septiembre de 2026" />
+                            <Label fx:id="lblClock" styleClass="top-clock" text="17:52:13" />
+                        </HBox>
                     </VBox>
-                    <Button styleClass="icon-button" text="●">
+                    <StackPane styleClass="notification-wrap"><Button styleClass="icon-button" text="●">
                         <tooltip>
                             <Tooltip text="Notificaciones" />
                         </tooltip>
                     </Button>
+                        <Label styleClass="notification-badge" text="3" /></StackPane>
                     <Button styleClass="icon-button" text="⚙">
                         <tooltip>
                             <Tooltip text="Configuración" />
@@ -86,6 +107,12 @@
                                                     <Label styleClass="hero-kicker" text="PANEL DE CONTROL" />
                                                     <Label styleClass="hero-title" text="Bienvenido a SmartGym" />
                                                     <Label styleClass="hero-text" text="Administra clientes, planes, entrenadores e inscripciones desde un solo lugar." wrapText="true" />
+                                                    <HBox spacing="7" styleClass="hero-chip-row">
+                                                        <Label styleClass="hero-chip" text="CLIENTES" />
+                                                        <Label styleClass="hero-chip" text="PLANES" />
+                                                        <Label styleClass="hero-chip" text="CONTROL" />
+                                                        <Label styleClass="hero-chip" text="REPORTES" />
+                                                    </HBox>
                                                     <HBox spacing="10">
                                                         <padding>
                                                             <Insets bottom="0" left="0" right="0" top="0" />
@@ -94,34 +121,44 @@
                                                         <Button onAction="#irClientes" styleClass="secondary-button" text="Registrar cliente" />
                                                     </HBox>
                                                 </VBox>
-                                                <VBox alignment="CENTER" styleClass="hero-emblem">
-                                                    <Label styleClass="hero-emblem-small" text="SMART" />
-                                                    <Label styleClass="hero-emblem-big" text="GYM" />
-                                                    <Label styleClass="hero-emblem-caption" text="TRAIN • TRACK • GROW" />
-                                                </VBox>
+                                                <StackPane styleClass="hero-emblem-wrap">
+                                                    <Circle radius="82" styleClass="hero-ring outer-ring" />
+                                                    <Circle radius="63" styleClass="hero-ring inner-ring" />
+                                                    <VBox alignment="CENTER" styleClass="hero-emblem">
+                                                        <Label styleClass="hero-emblem-small" text="SMART" />
+                                                        <Label styleClass="hero-emblem-big" text="GYM" />
+                                                        <Label styleClass="hero-emblem-caption" text="TRAIN • TRACK • GROW" />
+                                                    </VBox>
+                                                </StackPane>
                                             </HBox>
 
                                             <HBox spacing="15" styleClass="stats-row">
                                                 <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
                                                     <HBox alignment="CENTER_LEFT"><Label styleClass="stat-label" text="CLIENTES" /><Region HBox.hgrow="ALWAYS" /><Label styleClass="stat-index" text="01" /></HBox>
                                                     <Label fx:id="lblTotalClientes" styleClass="stat-value" text="0" />
-                                                    <Label styleClass="stat-foot" text="Clientes registrados" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="7"><Label styleClass="trend-dot" text="●" /><Label styleClass="stat-foot" text="Base activa" /></HBox>
                                                 </VBox>
                                                 <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
                                                     <HBox alignment="CENTER_LEFT"><Label styleClass="stat-label" text="PLANES" /><Region HBox.hgrow="ALWAYS" /><Label styleClass="stat-index" text="02" /></HBox>
                                                     <Label fx:id="lblTotalPlanes" styleClass="stat-value" text="0" />
-                                                    <Label styleClass="stat-foot" text="Planes disponibles" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="7"><Label styleClass="trend-dot" text="●" /><Label styleClass="stat-foot" text="Catálogo activo" /></HBox>
                                                 </VBox>
                                                 <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
                                                     <HBox alignment="CENTER_LEFT"><Label styleClass="stat-label" text="ENTRENADORES" /><Region HBox.hgrow="ALWAYS" /><Label styleClass="stat-index" text="03" /></HBox>
                                                     <Label fx:id="lblTotalEntrenadores" styleClass="stat-value" text="0" />
-                                                    <Label styleClass="stat-foot" text="Profesionales registrados" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="7"><Label styleClass="trend-dot" text="●" /><Label styleClass="stat-foot" text="Equipo disponible" /></HBox>
                                                 </VBox>
                                                 <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
                                                     <HBox alignment="CENTER_LEFT"><Label styleClass="stat-label" text="INSCRIPCIONES" /><Region HBox.hgrow="ALWAYS" /><Label styleClass="stat-index" text="04" /></HBox>
                                                     <Label fx:id="lblTotalInscripciones" styleClass="stat-value" text="0" />
-                                                    <Label styleClass="stat-foot" text="Inscripciones realizadas" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="7"><Label styleClass="trend-dot" text="●" /><Label styleClass="stat-foot" text="Operaciones registradas" /></HBox>
                                                 </VBox>
+                                            </HBox>
+
+                                            <HBox spacing="12" styleClass="insight-strip">
+                                                <VBox spacing="3" HBox.hgrow="ALWAYS"><Label styleClass="strip-kicker" text="ESTADO DE OPERACIÓN" /><Label styleClass="strip-title" text="Todo listo para gestionar el gimnasio" /><Label styleClass="strip-text" text="Registra información y consulta los resultados desde los módulos." /></VBox>
+                                                <VBox alignment="CENTER_RIGHT" spacing="3"><Label styleClass="strip-value" text="100%" /><Label styleClass="strip-kicker" text="MÓDULOS DISPONIBLES" /></VBox>
+                                                <StackPane styleClass="strip-check"><Label text="✓" /></StackPane>
                                             </HBox>
 
                                             <HBox spacing="18">
@@ -141,7 +178,11 @@
                                                     <Button onAction="#irClientes" styleClass="quick-button" text="＋  Registrar cliente" />
                                                     <Button onAction="#irPlanes" styleClass="quick-button" text="＋  Crear plan" />
                                                     <Button onAction="#irEntrenadores" styleClass="quick-button" text="＋  Registrar entrenador" />
-                                                    <Button onAction="#irInscripciones" styleClass="quick-button accent" text="＋  Nueva inscripción" />
+                                                    <Button onAction="#irInscripciones" text="＋  Nueva inscripción">
+                                          <styleClass>
+                                             <String fx:value="quick-button" />
+                                             <String fx:value="accent" />
+                                          </styleClass></Button>
                                                 </VBox>
                                             </HBox>
                                         </VBox>
@@ -157,7 +198,7 @@
                                     <content>
                                         <VBox spacing="18" styleClass="module-content">
                                             <HBox alignment="CENTER_LEFT">
-                                                <VBox spacing="4"><Label styleClass="module-title" text="Gestión de clientes" /><Label styleClass="module-description" text="Registra, consulta y administra la información de tus clientes." /></VBox>
+                                                <VBox spacing="4"><Label styleClass="module-eyebrow" text="MÓDULO 01 / GESTIÓN" /><Label styleClass="module-title" text="Gestión de clientes" /><Label styleClass="module-description" text="Registra, consulta y administra la información de tus clientes." /></VBox>
                                                 <Region HBox.hgrow="ALWAYS" />
                                                 <Button styleClass="primary-button" text="＋ Nuevo cliente" />
                                             </HBox>
@@ -221,7 +262,7 @@
                                 <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="content-scroll">
                                     <content>
                                         <VBox spacing="20" styleClass="module-content">
-                                            <HBox alignment="CENTER_LEFT"><VBox spacing="4"><Label styleClass="module-title" text="Planes de entrenamiento" /><Label styleClass="module-description" text="Selecciona o registra los planes disponibles para SmartGym." /></VBox><Region HBox.hgrow="ALWAYS" /><Button styleClass="primary-button" text="＋ Nuevo plan" /></HBox>
+                                            <HBox alignment="CENTER_LEFT"><VBox spacing="4"><Label styleClass="module-eyebrow" text="MÓDULO 02 / CATÁLOGO" /><Label styleClass="module-title" text="Planes de entrenamiento" /><Label styleClass="module-description" text="Selecciona o registra los planes disponibles para SmartGym." /></VBox><Region HBox.hgrow="ALWAYS" /><Button styleClass="primary-button" text="＋ Nuevo plan" /></HBox>
                                             <HBox spacing="16">
                                                 <VBox styleClass="plan-card plan-basic" HBox.hgrow="ALWAYS">
                                                     <Label styleClass="plan-kicker" text="BÁSICO" /><Label styleClass="plan-title" text="Plan Básico" /><Label styleClass="plan-price" text="80.000" /><Label styleClass="plan-period" text="por mes" /><Separator /><Label styleClass="benefit" text="✓ Acceso a zonas deportivas" /><Label styleClass="benefit" text="✓ Plan de entrenamiento básico" /><Region VBox.vgrow="ALWAYS" /><Button onAction="#crearPlanBasico" styleClass="plan-button" text="Crear / registrar" /></VBox>
@@ -244,7 +285,7 @@
                                     <Label styleClass="field-label" text="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="0" /><TextField fx:id="txtEntrenadorNombre" promptText="Nombre completo" styleClass="field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label styleClass="field-label" text="Especialidad" GridPane.columnIndex="2" GridPane.rowIndex="0" /><TextField fx:id="txtEntrenadorEspecialidad" promptText="Ej. Entrenamiento funcional" styleClass="field" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <Label styleClass="field-label" text="Teléfono" GridPane.columnIndex="0" GridPane.rowIndex="2" /><TextField fx:id="txtEntrenadorTelefono" promptText="Teléfono" styleClass="field" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                    <Label styleClass="field-label" text="Tarifa por sesión" GridPane.columnIndex="1" GridPane.rowIndex="2" /><TextField fx:id="txtEntrenadorTarifa" promptText="0" styleClass="field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label styleClass="field-label" text="Tarifa por sesión" GridPane.columnIndex="1" GridPane.rowIndex="2" /><TextField fx:id="txtEntrenadorTarifa" promptText=" 0" styleClass="field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <HBox spacing="10" GridPane.columnIndex="2" GridPane.rowIndex="3"><Button onAction="#registrarEntrenador" styleClass="primary-button" text="Guardar entrenador" /><Button styleClass="ghost-button" text="Limpiar" /></HBox>
                                     <columnConstraints>
                                        <ColumnConstraints />
@@ -265,7 +306,7 @@
                         <!-- SERVICIOS -->
                         <Tab fx:id="tabServicios" text="Servicios">
                             <content><ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="content-scroll"><content><VBox spacing="18" styleClass="module-content">
-                                <HBox alignment="CENTER_LEFT"><VBox spacing="4"><Label styleClass="module-title" text="Servicios adicionales" /><Label styleClass="module-description" text="Administra los servicios que pueden agregarse a una inscripción." /></VBox><Region HBox.hgrow="ALWAYS" /><Button styleClass="primary-button" text="＋ Nuevo servicio" /></HBox>
+                                <HBox alignment="CENTER_LEFT"><VBox spacing="4"><Label styleClass="module-eyebrow" text="MÓDULO 04 / SERVICIOS" /><Label styleClass="module-title" text="Servicios adicionales" /><Label styleClass="module-description" text="Administra los servicios que pueden agregarse a una inscripción." /></VBox><Region HBox.hgrow="ALWAYS" /><Button styleClass="primary-button" text="＋ Nuevo servicio" /></HBox>
                                 <GridPane hgap="14" styleClass="form-card" vgap="12"><Label styleClass="field-label" text="Código" GridPane.columnIndex="0" GridPane.rowIndex="0" /><TextField fx:id="txtServicioCodigo" promptText="Código" styleClass="field" GridPane.columnIndex="0" GridPane.rowIndex="1" /><Label styleClass="field-label" text="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="0" /><TextField fx:id="txtServicioNombre" promptText="Nombre del servicio" styleClass="field" GridPane.columnIndex="1" GridPane.rowIndex="1" /><Label styleClass="field-label" text="Precio" GridPane.columnIndex="2" GridPane.rowIndex="0" /><TextField fx:id="txtServicioPrecio" promptText="0" styleClass="field" GridPane.columnIndex="2" GridPane.rowIndex="1" /><Label styleClass="field-label" text="Descripción" GridPane.columnIndex="0" GridPane.rowIndex="2" /><TextField fx:id="txtServicioDescripcion" promptText="Descripción breve" styleClass="field" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" /><Button onAction="#registrarServicio" styleClass="primary-button" text="Guardar servicio" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                     <columnConstraints>
                                        <ColumnConstraints />
@@ -285,7 +326,7 @@
                         <!-- INSCRIPCIONES -->
                         <Tab fx:id="tabInscripciones" text="Inscripciones">
                             <content><ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="content-scroll"><content><VBox spacing="18" styleClass="module-content">
-                                <HBox alignment="CENTER_LEFT"><VBox spacing="4"><Label styleClass="module-title" text="Nueva inscripción" /><Label styleClass="module-description" text="Asocia un cliente, plan, entrenador y servicios adicionales." /></VBox><Region HBox.hgrow="ALWAYS" /><Label fx:id="lblInscripcionEstado" styleClass="status-pill" text="LISTO PARA REGISTRAR" /></HBox>
+                                <HBox alignment="CENTER_LEFT"><VBox spacing="4"><Label styleClass="module-eyebrow" text="MÓDULO 05 / OPERACIÓN" /><Label styleClass="module-title" text="Nueva inscripción" /><Label styleClass="module-description" text="Asocia un cliente, plan, entrenador y servicios adicionales." /></VBox><Region HBox.hgrow="ALWAYS" /><Label fx:id="lblInscripcionEstado" styleClass="status-pill" text="LISTO PARA REGISTRAR" /></HBox>
                                 <HBox spacing="18">
                                     <VBox spacing="15" styleClass="form-card" HBox.hgrow="ALWAYS">
                                         <Label styleClass="panel-title" text="Información de la inscripción" />
@@ -314,9 +355,9 @@
                         <!-- REPORTES -->
                         <Tab fx:id="tabReportes" text="Reportes">
                             <content><ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="content-scroll"><content><VBox spacing="20" styleClass="module-content">
-                                <VBox spacing="4"><Label styleClass="module-title" text="Reportes y consultas" /><Label styleClass="module-description" text="Consulta indicadores y resultados de la operación del gimnasio." /></VBox>
+                                <VBox spacing="4"><Label styleClass="module-eyebrow" text="MÓDULO 06 / ANÁLISIS" /><Label styleClass="module-title" text="Reportes y consultas" /><Label styleClass="module-description" text="Consulta indicadores y resultados de la operación del gimnasio." /></VBox>
                                 <HBox spacing="15">
-                                    <VBox styleClass="report-card" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="INGRESOS" /><Label fx:id="lblIngresosReporte" styleClass="report-value" text="0" /><Label styleClass="stat-foot" text="Período seleccionado" /></VBox>
+                                    <VBox styleClass="report-card" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="INGRESOS" /><Label fx:id="lblIngresosReporte" styleClass="report-value" text=" 0" /><Label styleClass="stat-foot" text="Período seleccionado" /></VBox>
                                     <VBox styleClass="report-card" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="INSCRIPCIONES" /><Label fx:id="lblInscripcionesReporte" styleClass="report-value" text="0" /><Label styleClass="stat-foot" text="Registradas en el período" /></VBox>
                                     <VBox styleClass="report-card" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="CLIENTES" /><Label fx:id="lblClientesReporte" styleClass="report-value" text="0" /><Label styleClass="stat-foot" text="Total actual" /></VBox>
                                 </HBox>
