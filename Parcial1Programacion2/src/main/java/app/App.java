@@ -18,7 +18,7 @@ public class App extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass()   .getResource("/fxml/Main.fxml"));
         Scene scene = new Scene(loader.load());
         scene.getStylesheets().add(App.class.getResource("/css/smartgym.css").toExternalForm());
         stage.setTitle("SmartGym - Sistema de Gestión");
