@@ -168,7 +168,7 @@
 .combo-box.field:focused, .date-picker.field:focused { -fx-border-color: #ff9a55; }
 .modern-table .placeholder .label { -fx-text-fill: #9ca5ac; -fx-font-size: 10px; }
 .modern-table .table-row-cell:filled:selected:hover { -fx-background-color: #ffe8d7; }
-.modern-table .table-cell:first-child { -fx-font-weight: 800; }
+.modern-table .first-column {-fx-font-weight: 800;}
 .status-pill { -fx-effect: dropshadow(gaussian, rgba(45,145,82,.08), 8, .1, 0, 2); }
 .service-flow { -fx-border-color: #e2e7ea; -fx-border-radius: 10px; }
 .summary-card { -fx-effect: dropshadow(gaussian, rgba(12,19,26,.18), 22, .15, 0, 8); }
