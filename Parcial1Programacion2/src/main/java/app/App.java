@@ -18,14 +18,12 @@ public class App extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(
-                App.class.getResource("/fxml/Menu.fxml")
-        );
-
-        Scene scene = new Scene(fxmlLoader.load());
-
-        stage.setTitle("SmartGym - Menú Principal");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add(App.class.getResource("/css/smartgym.css").toExternalForm());
+        stage.setTitle("SmartGym - Sistema de Gestión");
+        stage.setMinWidth(1050);
+        stage.setMinHeight(700);
         stage.setScene(scene);
         stage.show();
     }
